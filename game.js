@@ -20,14 +20,14 @@ function matchOver(obj, num) {
     {
         myPoke.classList.add('faint');
         setTimeout(() => {
-            window.location.href='map2.html';
+            window.location.href='index.html';
         }, 3000);
     }
     if(num==2)
     {
         urPoke.classList.add('faint');
         setTimeout(() => {
-            window.location.href='map2.html';
+            window.location.href='index.html';
         }, 3000);
 
     }
