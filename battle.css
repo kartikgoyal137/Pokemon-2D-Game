@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding: 0;
+    
+}
+
+body {
+    display: flex;
+    position: relative;
+    justify-content: space-evenly;
+}
+
+.pokelist {
+    background-color: #f8f8c8;
+    height: 99vh;
+    width: 19vw;
+    border: 0.5em solid black;
+}
+
+.bag-items {
+    background-color: #8ecae6;
+    height: 99vh;
+    width: 16vw;
+    border: 0.5em solid black;
+}
+
+.outerL {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 65vw;
+    margin: 0 auto;
+}
+
+.background {
+    width: 65vw;
+}
+
+.taskbar {
+    display: flex;
+    background-color: black;
+    width: 65vw;
+    height: 24vh;
+    justify-content: space-evenly;
+}
+
+.myPoke {
+    position: absolute;
+    left: 11vw;
+    top: 35vh;
+    width: 15em;
+}
+
+.urPoke {
+    position: absolute;
+    left: 38vw;
+    top: 11vh;
+    width: 15em;
+}
+
+.options {  
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 20vw;
+    height: 19vh;
+    background-color: #f9f7f8;
+    border: 1em solid #6f6997;
+    border-radius: 20px;
+}
+
+.option {
+    align-self: center;
+    justify-self: center;
+    font-size: 45px;
+    font-family: 'Pokemon Fire Red';
+    cursor: pointer;
+}
+
+.task {
+    display: grid;
+    font-size: 55px;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr;
+    width: 40vw;
+    height: 18vh;
+    padding: 10px;
+    background-color: #285069; 
+    font-family: 'Pokemon Fire Red';
+    border: 0.2em solid #c8a74a;
+    margin: 0;
+    border-radius: 20px;
+}
+
+.moves {
+    cursor: pointer;
+}
+
+@keyframes attack1 {
+    from {left: 11vw;
+        top: 35vh;}
+    to {left: 38vw;
+        top: 11vh;}
+}
+
+.animate1 {
+    animation: attack1 0.4s ease-out 0s 2 alternate;
+}
+.animate2 {
+    animation: attack1 0.4s ease-out 0s 2 alternate-reverse;
+}
+
+.hp {
+    width: 13vw;
+    height: 9vh;
+    background-color: white;
+    position: absolute;
+    display: flex;
+    padding: 10px;
+    border-radius: 15px;
+    flex-direction: column;
+    gap: 5px;
+    border: 5px solid #285069;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.bar{
+    background-color: green;
+    height: 4vh;
+    width: 13vw;
+    border-radius: 10px;
+}
+
+.namePokemon {
+    font-family: 'Pokemon Fire Red';
+    font-size: 2.5em;
+}
+
+#hp1 {
+    left: 0.5vw;
+    top: 60vh;
+
+}
+#hp2 {
+    left: 49vw;
+    top: 2vh;
+}
+
+#bar1, #bar2 {
+    transition: width 0.5s ease-in-out;
+}
+
+.pokelist {
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    background-color: #8ecae6;
+}
+
+.choose {
+    width: 10vw;
+    color: #ffb703;
+    border: 4px solid black;
+    padding: 5%;
+    font-size: 20px;
+    border-radius: 20px;
+    background-color: #285069;
+}
+
+#startBtn {
+    background-color: #fb8500;
+    color: #023047;
+    padding: 6%;
+    font-size: 1.5em;
+    border-radius: 35px;
+    border-color: #023047;
+    cursor: pointer;
+    border: 4px solid;
+}
+
+#startBtn:hover {
+    background-color: #023047;
+    color: #fb8500;
+    transition: 0.5s;
+    
+    border-color: #fb8500;
+}
+
+#loader {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.faint {
+    animation: dead 1s ease-out 0s forwards ;
+}
+
+@keyframes dead {
+    from {
+        opacity: 100%;
+    }
+    to {
+        opacity: 0%;
+    }
+}

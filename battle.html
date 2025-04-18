@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle</title>
+    <link href="https://fonts.cdnfonts.com/css/pokemon-fire-red" rel="stylesheet">
+    <link rel="stylesheet" href="battle.css">
+</head>
+<body>
+    <div id="loader">
+    <img src="indie_assets/pikachu-running.gif">
+    </div>
+    <audio src="indie_assets/fight.mp3" loop autoplay></audio>
+    <div class="pokelist">
+        <img alt="" id="sprite1" class="sprite">
+        <select name="My Pokemon" id="choose1" class="choose"></select>
+        <div></div>
+        <img alt="" id="sprite2" class="sprite">
+        <select name="Your Pokemon" id="choose2" class="choose"></select>
+        <button id="startBtn">Start Battle</button>
+    </div>
+    <div class="outerL">
+    <div id="hp1" class="hp">
+        <div id="nameOfMy" class="namePokemon"></div>
+        <div id="bar1" class="bar"></div>
+    </div>
+    <div id="hp2" class="hp">
+        <div id="nameOfHis" class="namePokemon"></div>
+        <div class="bar" id="bar2"></div>
+    </div>
+    <img src="indie_assets/motionbg.gif" class="background">
+    <div class="taskbar">
+        <div class="task">What will POKeMON do?</div>
+        <div class="options">
+            <div id="fight" class="option">FIGHT</div>
+            <div id="bag" class="option">BAG</div>
+            <div id="pokemon_choose" class="option">POKeMON</div>
+            <div id="run" class="option">RUN</div>
+        </div>
+    </div>
+    <img class="myPoke" id="h55">
+    <img class="urPoke">
+    </div>
+    <div class="bag-items">
+    </div>
+</body>
+<script src="battle.js" type="module"></script>
+<script src="game.js" type="module"></script>
+</html>
