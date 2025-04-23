@@ -65,6 +65,9 @@ function rectCollision(rect1,rect2)
         rect1.y + rect1.height >= rect2.y)
 }
 
+let a =10;
+let b= 10;
+
 class PlayerSprite {
     constructor(posX, posY, image)
     {
@@ -72,11 +75,11 @@ class PlayerSprite {
         this.y = posY;
         this.image = image;
         this.width = 50;
-        this.height = 70;
+        this.height = 72;
     }
 
-    draw(){
-        ctx.drawImage(this.image, 10,10,40,50,this.x,this.y,50,70);
+    draw(a, b){
+        ctx.drawImage(this.image, a,b,40,50,this.x,this.y,50,70);
     }
 }
 
@@ -100,7 +103,7 @@ function animate()
     boundaries.forEach((boundary)=> {
         boundary.draw();
     })
-    ash.draw();
+    ash.draw(a,b);
     console.log(city.x);
     console.log(city.y);
     checkGym(city);
@@ -108,6 +111,8 @@ function animate()
     
     
     if(keys.w.pressed){
+        a = 75;
+        b= 200;
         let moving = true;
         for(let i=0; i<boundaries.length; i++)
         {
@@ -121,7 +126,6 @@ function animate()
                 )
             ) 
             {
-                console.log('fjdjdf');
                 moving = false;
                 break;
             }
@@ -133,6 +137,8 @@ function animate()
     }
     if(keys.s.pressed){
         let moving = true;
+        a = 10;
+        b= 10;
         for(let i=0; i<boundaries.length; i++)
             {
                 const boundary = boundaries[i];
@@ -145,7 +151,6 @@ function animate()
                     )
                 ) 
                 {
-                    console.log('fjdjdf');
                     moving = false;
                     break;
                 }
@@ -156,6 +161,8 @@ function animate()
         }
     }
     if(keys.d.pressed){
+        a = 75;
+        b= 138;
         let moving = true;
         for(let i=0; i<boundaries.length; i++)
             {
@@ -169,7 +176,6 @@ function animate()
                     )
                 ) 
                 {
-                    console.log('fjdjdf');
                     moving = false;
                     break;
                 }
@@ -180,6 +186,8 @@ function animate()
         }
     }
     if(keys.a.pressed){
+        a = 75;
+        b= 75;
         let moving = true;
         for(let i=0; i<boundaries.length; i++)
             {
@@ -193,7 +201,6 @@ function animate()
                     )
                 ) 
                 {
-                    console.log('fjdjdf');
                     moving = false;
                     break;
                 }
@@ -207,7 +214,6 @@ function animate()
 }
 background.onload = () => {
     animate();
-    setTimeout(()=>{alert('find the gym');}, 4000);
 }
 
 
@@ -232,16 +238,16 @@ window.addEventListener('keydown', (e) => {
     switch(e.key) {
         case 'w':
             keys.w.pressed = true;
-            break
+            break;
         case 'a':
             keys.a.pressed = true;
-            break
+            break;
         case 's':
             keys.s.pressed = true;
-            break
+            break;
         case 'd':
             keys.d.pressed = true;
-            break
+            break;
     }
 
 })
@@ -250,16 +256,22 @@ window.addEventListener('keyup', (e) => {
     switch(e.key) {
         case 'w':
             keys.w.pressed = false;
-            break
+            break;
         case 'a':
             keys.a.pressed = false;
-            break
+            break;
         case 's':
             keys.s.pressed = false;
-            break
+            break;
         case 'd':
             keys.d.pressed = false;
-            break
+            break;
     }
 
 })
+
+document.addEventListener('keydown', () => {
+    const speak = document.createElement('div');
+    speak.innerHTML = '<audio src="voice.mp3" autoplay></audio>';
+    document.body.appendChild(speak);
+}, {once:true});

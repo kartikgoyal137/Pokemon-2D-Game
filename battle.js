@@ -35,11 +35,11 @@ export class Pokemon {
         this.id2 = data.id;
 
         if(this.profile===1){
-            document.querySelector(`.${this.id}`).src = data.sprites.back_default;
+            document.querySelector(`.${this.id}`).src = data.sprites.other.showdown.back_default || data.sprites.back_default;
         }
         if (this.profile===2)
         {
-            document.querySelector(`.${this.id}`).src = data.sprites.front_default;
+            document.querySelector(`.${this.id}`).src = data.sprites.other.showdown.front_default || data.sprites.front_default;
         }
     }
 }
