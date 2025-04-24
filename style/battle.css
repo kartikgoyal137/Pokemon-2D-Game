@@ -8,6 +8,7 @@ body {
     display: flex;
     position: relative;
     justify-content: space-evenly;
+    overflow: hidden;
 }
 
 .pokelist {

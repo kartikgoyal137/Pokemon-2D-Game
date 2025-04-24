@@ -107,11 +107,6 @@ selectMove.forEach((btn) => {
                 return;
             }
 
-        console.log(damage1);
-        console.log(damage2);
-        console.log(obj1.hp);
-        console.log(obj2.hp);
-
         isRunning = false;
         })
 })

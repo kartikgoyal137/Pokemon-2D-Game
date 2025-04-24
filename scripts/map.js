@@ -115,8 +115,6 @@ function animate()
         boundary.draw();
     })
     ash.draw(a,b);
-    console.log(city.x);
-    console.log(city.y);
     checkGym(city);
 
     
