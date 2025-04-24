@@ -40,8 +40,8 @@ body {
 
 .taskbar {
     display: flex;
-    background-color: black;
-    width: 65vw;
+    background-color: #8ecae6;
+    width: vw;
     height: 24vh;
     justify-content: space-evenly;
 }
@@ -80,10 +80,10 @@ body {
 
 .task {
     display: grid;
-    font-size: 55px;
+    font-size: 65px;
     justify-items: center;
     grid-template-columns: 1fr 1fr;
-    width: 40vw;
+    width: 62vw;
     height: 18vh;
     padding: 10px;
     background-color: #285069; 

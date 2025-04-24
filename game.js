@@ -1,5 +1,7 @@
 import { activeParty, activeEnemy, PokeMoves, findDamage, animation , updateHP} from './battle.js';
 
+
+
 async function LoadPokemon () { 
     const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=2000');
     const data = await response.json();
@@ -34,10 +36,16 @@ function matchOver(obj, num) {
 
 }
 
+const health1 = document.querySelector('#hp1')
+health1.style.display = 'none';
+const health2 = document.querySelector('#hp2')
+health2.style.display = 'none';
 document.getElementById('startBtn').addEventListener('click', async () => {
 
     const myPoke = document.querySelector('.myPoke');
     const urPoke = document.querySelector('.urPoke');
+    health1.style.display = 'inline-block';
+    health2.style.display = 'inline-block';
     myPoke.classList.remove('faint');
     urPoke.classList.remove('faint');
 

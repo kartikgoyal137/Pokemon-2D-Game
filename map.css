@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body {
+    overflow: hidden;
+}
+
 .instruct {
     position: absolute;
     font-family: 'Pokemon Fire Red';
