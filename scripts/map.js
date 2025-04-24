@@ -92,9 +92,7 @@ function checkGym(city)
         document.addEventListener('keydown', (e) => {
             if(e.key === 'Enter')
             {
-                window.location.href = 'battle.html';
-                
-                
+                window.location.href = '../battle.html'; 
             }
         })
     }
