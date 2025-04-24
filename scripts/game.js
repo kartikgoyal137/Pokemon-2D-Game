@@ -1,6 +1,5 @@
-import { activeParty, activeEnemy, PokeMoves, findDamage, animation , updateHP} from './battle.js';
+import { activeParty, activeEnemy, PokeMoves, findDamage, animation , updateHP, pokeUrl} from './battle.js';
 
-const pokeUrl = 'https://pokeapi.co/api/v2/';
 
 async function LoadPokemon () { 
     const response = await fetch(`${pokeUrl}pokemon?limit=2000`);
@@ -15,25 +14,14 @@ async function LoadPokemon () {
 }
 LoadPokemon();
 
-function matchOver(obj, num) {
+function matchOver(num) {
     const myPoke = document.querySelector('.myPoke');
     const urPoke = document.querySelector('.urPoke');
-    if (num==1)
-    {
-        myPoke.classList.add('faint');
-        setTimeout(() => {
+    const choicePoke = num == 1 ? myPoke : urPoke;
+    choicePoke.classList.add('faint')
+           setTimeout(() => {
             window.location.href='../index.html';
         }, 3000);
-    }
-    if(num==2)
-    {
-        urPoke.classList.add('faint');
-        setTimeout(() => {
-            window.location.href='../index.html';
-        }, 3000);
-
-    }
-
 }
 
 const health1 = document.querySelector('#hp1')
@@ -80,35 +68,37 @@ selectMove.forEach((btn) => {
         obj2.hp -= damage1;
         await animation(obj1, 'myPoke', 1, obj2);
 
-        if (obj1.hp <= 0)
-            {
-                matchOver(obj1,1);
-                return;
-            }
-        if (obj2.hp <= 0)
-            {
-                matchOver(obj2,2);
-                return;
-            }
+        if(checkMatch(obj1, obj2)) {
+            return;
+        }
 
         const eneM = obj2.enemyMove().toString();
         const damage2 = await findDamage(obj2.name,eneM,obj1.name);
         obj1.hp -= damage2;
         await animation(obj2, 'urPoke', 2, obj1);
 
-        if (obj1.hp <= 0)
-            {
-                matchOver(obj1, 1);
-                return;
-            }
-        if (obj2.hp <= 0)
-            {
-                matchOver(obj2, 2);
-                return;
-            }
+        if(checkMatch(obj1, obj2)) {
+            return;
+        }
 
         isRunning = false;
         })
 })
 
 });
+
+function checkMatch(obj1, obj2){
+if (obj1.hp <= 0)
+    {
+        matchOver(obj1,1);
+        return 1;
+    }
+else if (obj2.hp <= 0)
+    {
+        matchOver(obj2,2);
+        return 1;
+    }
+else {
+    return 0;
+}
+}

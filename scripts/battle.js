@@ -1,5 +1,4 @@
-
-const pokeUrl = 'https://pokeapi.co/api/v2/';
+export const pokeUrl = 'https://pokeapi.co/api/v2/';
 
 export async function PokeMoves(name) {
     const response = await fetch(`${pokeUrl}pokemon/${name.toLowerCase()}`);
@@ -49,8 +48,6 @@ export class activeParty extends Pokemon {
     constructor(name,hp,moveset, cries, sprites, stats, id, profile){
         super(name,hp,moveset, cries, sprites, stats, id, profile);
     }
-    
-
 }
 
 export class activeEnemy extends Pokemon {
@@ -158,8 +155,6 @@ export function animation(obj, who, num, objsecond){
         })
     })
 }
-
-
 
 window.addEventListener('load', () => {
     const loader = document.getElementById('loader');    
