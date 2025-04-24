@@ -85,7 +85,7 @@ class PlayerSprite {
 
 function checkGym(city)
 {
-    if(city.x< 286 && city.x>>-322 && city.y>-1384 && city.y<-1230)
+    if(city.x< 286 && city.x >-322 && city.y>-1384 && city.y<-1230)
     {
         window.location.href = 'battle.html';
     }
@@ -98,6 +98,7 @@ const ash = new PlayerSprite(canvas.width/2, canvas.height/2 + 20, player);
 
 function animate()
 {
+    
     window.requestAnimationFrame(animate); 
     city.draw();
     boundaries.forEach((boundary)=> {
@@ -108,6 +109,7 @@ function animate()
     console.log(city.y);
     checkGym(city);
 
+    
     
     
     if(keys.w.pressed){
