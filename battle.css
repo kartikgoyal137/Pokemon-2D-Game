@@ -48,16 +48,16 @@ body {
 
 .myPoke {
     position: absolute;
-    left: 15vw;
-    top: 39vh;
-    width: 10em;
+    left: 12vw;
+    top: 30vh;
+    width: 18em;
 }
 
 .urPoke {
     position: absolute;
-    left: 44vw;
-    top: 24vh;
-    width: 12em;
+    left: 38vw;
+    top: 17vh;
+    width: 16em;
 }
 
 .options {  
@@ -98,10 +98,10 @@ body {
 }
 
 @keyframes attack1 {
-    from {left: 15vw;
-        top: 39vh;}
-    to {left: 44vw;
-        top: 24vh;}
+    from {left: 12vw;
+        top: 30vh;}
+    to {left: 38vw;
+        top: 17vh;}
 }
 
 .animate1 {

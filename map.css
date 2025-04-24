@@ -2,3 +2,15 @@
     margin: 0;
     padding: 0;
 }
+
+.instruct {
+    position: absolute;
+    font-family: 'Pokemon Fire Red';
+    font-size: 40px;
+    height: 10vw;
+    width: 40vw;
+    left: 30%;
+    top: 8%;
+    background-color: aliceblue;
+    text-align: center;
+}

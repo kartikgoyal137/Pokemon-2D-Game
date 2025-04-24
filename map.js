@@ -3,170 +3,281 @@ const ctx = canvas.getContext('2d');
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 
-function LoadAssets(source) {
-    return new Promise((resolve) => {
-        const img = new Image();
-        img.src = source;
-        img.onload = () => resolve(img);
-    });
+const background = new Image();
+const player = new Image();
+player.src = 'indie_assets/sprite.png';
+background.src = 'mapC.png';
+
+
+class Boundary {
+    constructor(posX,posY){
+        this.x = posX;
+        this.y = posY;
+        this.width = 40;
+        this.height = 40;
+    }
+
+    draw()
+    {
+        ctx.fillStyle = 'rgba(255,0,0,0)';
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
 }
 
-async function loadEnv() {
-    const [green, road, tree, house, ash] = await Promise.all([
-        LoadAssets('indie_assets/tiles.png'),
-        LoadAssets('indie_assets/tiles.png'),
-        LoadAssets('indie_assets/tiles2.png'),
-        LoadAssets('indie_assets/Buildings.png'),
-        LoadAssets('indie_assets/sprite.png')
-    ]);
-
-    return {green, road, tree, house, ash};
-}
-
-function drawEnv(ctx, images) {
-    let {green, road, tree, house, ash} = images;
-
-        for(let i=0; i<2000; i+=25){
-        for(let j=0; j<1200; j+=25){
-        ctx.drawImage(green, 49,42,12,12,i,j,25,25);
-        }
-        }
-        for(let i=0; i<1500; i+=25){
-        for(let j=275; j<320; j+=25){
-        ctx.drawImage(road, 113,32,15,15,i,j,25,25);
-        }
-        }
-        for(let i=500; i<550; i+=25){
-        for(let j=50; j<325; j+=25){
-        ctx.drawImage(road, 113,32,15,15,i,j,25,25);
-        }
-        }
-        for(let i=700; i<750; i+=25){
-        for(let j=325; j<800; j+=25){
-        ctx.drawImage(road, 113,32,15,15,i,j,25,25);
-        }
-        }
-
-        ctx.drawImage(house, 208,22,80,72,40,450,150,150);
-        ctx.drawImage(house, 208,22,80,72,220,450,150,150);
-        ctx.drawImage(house, 435,130,96,70,350,125,150,150);
-        ctx.drawImage(house, 502,235,80,70,750,325,150,150);
-
-        for(let j=0; j<1200; j+=50) {
-            if(j===0){
-                for(let i=0; i<1500; i+=30) {
-                     ctx.drawImage(tree, 272,23,17,26,i,j,30,50);
-                    }
-            }
-            else {
-                ctx.drawImage(tree, 272,23,17,26,0,j,30,50);
-                ctx.drawImage(tree, 272,23,17,26,1470,j,30,50);
-            }
-        }
-}
-
-let a = 200;
-let b = 200;
-let preva = 200;
-let prevb = 200;
-
-function stop(key) {
-    if (key === 'ArrowUp')
-        {
-            
-            b += 10;
-        }
-        else if (key === 'ArrowDown')
-        {
-            
-            b -= 10;
-        }
-        if (key === 'ArrowLeft')
-        {
-            
-            a += 10;
-        }
-        if (key === 'ArrowRight')
-        {
-            
-            a -= 10;
-        }
-}
-
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowUp')
+const colMap = [];
+for(let i=0; i<collision.length; i+=75)
     {
-        
-        b -= 10;
+        colMap.push(collision.slice(i,i+75));
     }
-    else if (e.key === 'ArrowDown')
-    {
-        
-        b += 10;
-    }
-    if (e.key === 'ArrowLeft')
-    {
-        
-        a -= 10;
-    }
-    if (e.key === 'ArrowRight')
-    {
-        
-        a += 10;
-    }
-    if(collide(a,b,h)) {
-        stop(e.key);
-    }
+
+
+const offset = { x:-160 , y:-100}
+const boundaries = [];
+colMap.forEach((row,i) => {
+    row.forEach((Symbol,j) => {
+        if(Symbol===4726)
+        {
+            boundaries.push(new Boundary(j*40 + offset.x,i*40+offset.y))
+        }
+    })
 })
 
-const obstacles = [
-    {x:40 , y:450 , width:150 , height:150 },
-    {x:220 , y:450 , width:150 , height:150 },
-    {x:350 , y:125 , width:150 , height:150 },
-    {x:750 , y:325 , width:150 , height:150 },
-    {x:0 , y:0 , width:1500 , height:25 },
-    {x:0 , y:0 , width:25 , height:1500 },
-    {x:1475 , y:0 , width:25 , height:1500 },
-    {x:0 , y:750 , width:1500 , height:50 }
-]
+class Sprite {
+    constructor(posX, posY, image)
+    {
+        this.x = posX;
+        this.y = posY;
+        this.image = image;
+    }
 
-let h = 40;
-function drawSprite(ctx, images, a, b) {
-    
-    let {green, road, tree, house, ash} = images;
-    
-    ctx.drawImage(ash, 10,10,40,50,a,b,h,h);
-
-    
+    draw(){
+        ctx.drawImage(this.image, this.x, this.y);
+    }
 }
 
-function collide (a,b,h) {
-    for ( let obstacle of obstacles) {
-        if (
-            (a < (obstacle.x + obstacle.width)) &&
-            (a + h > obstacle.x) &&
-            (b < (obstacle.y + obstacle.height)) &&
-            (b + h > obstacle.y)
-        )
-        {   
-            return true;
+
+
+function rectCollision(rect1,rect2)
+{
+    return (rect1.x + rect1.width >= rect2.x &&
+        rect1.x <= 40 + rect2.x &&
+        rect1.y <= rect2.y + 40 &&
+        rect1.y + rect1.height >= rect2.y)
+}
+
+let a =10;
+let b= 10;
+
+class PlayerSprite {
+    constructor(posX, posY, image)
+    {
+        this.x = posX;
+        this.y = posY;
+        this.image = image;
+        this.width = 50;
+        this.height = 72;
+    }
+
+    draw(a, b){
+        ctx.drawImage(this.image, a,b,40,50,this.x,this.y,50,70);
+    }
+}
+
+function checkGym(city)
+{
+    if(city.x< 286 && city.x>>-322 && city.y>-1384 && city.y<-1230)
+    {
+        window.location.href = 'battle.html';
+    }
+}
+
+
+const city = new Sprite(-160, -100, background);
+const movables = [city,...boundaries]
+const ash = new PlayerSprite(canvas.width/2, canvas.height/2 + 20, player);
+
+function animate()
+{
+    window.requestAnimationFrame(animate); 
+    city.draw();
+    boundaries.forEach((boundary)=> {
+        boundary.draw();
+    })
+    ash.draw(a,b);
+    console.log(city.x);
+    console.log(city.y);
+    checkGym(city);
+
+    
+    
+    if(keys.w.pressed){
+        a = 75;
+        b= 200;
+        let moving = true;
+        for(let i=0; i<boundaries.length; i++)
+        {
+            const boundary = boundaries[i];
+            if(rectCollision(
+                {
+                    ...ash,
+                    y: ash.y - 2 
+                  },
+                  boundary
+                )
+            ) 
+            {
+                moving = false;
+                break;
+            }
+        }
+        if(moving){
+        
+        movables.forEach(obj => obj.y += 2);
         }
     }
-    return false;
+    if(keys.s.pressed){
+        let moving = true;
+        a = 10;
+        b= 10;
+        for(let i=0; i<boundaries.length; i++)
+            {
+                const boundary = boundaries[i];
+                if( rectCollision(
+                    {
+                        ...ash,
+                        y: ash.y + 2 
+                      },
+                      boundary
+                    )
+                ) 
+                {
+                    moving = false;
+                    break;
+                }
+            }
+        if(moving){
+       
+        movables.forEach(obj => obj.y -= 2);
+        }
+    }
+    if(keys.d.pressed){
+        a = 75;
+        b= 138;
+        let moving = true;
+        for(let i=0; i<boundaries.length; i++)
+            {
+                const boundary = boundaries[i];
+                if(rectCollision(
+                    {
+                        ...ash,
+                        x: ash.x + 2 
+                      },
+                      boundary
+                    )
+                ) 
+                {
+                    moving = false;
+                    break;
+                }
+            }
+        if (moving){
+    
+        movables.forEach(obj => obj.x -= 2);
+        }
+    }
+    if(keys.a.pressed){
+        a = 75;
+        b= 75;
+        let moving = true;
+        for(let i=0; i<boundaries.length; i++)
+            {
+                const boundary = boundaries[i];
+                if( rectCollision(
+                    {
+                        ...ash,
+                        x: ash.x - 2
+                      },
+                      boundary
+                    )
+                ) 
+                {
+                    moving = false;
+                    break;
+                }
+            }
+        if(moving){
+   
+        movables.forEach(obj => obj.x += 2);
+        }
+    }
+    
+}
+background.onload = () => {
+    animate();
 }
 
 
 
-async function StartGame() {
-    const images = await loadEnv();
 
-    function GameLoop(){
-        drawEnv(ctx, images);
-        drawSprite(ctx,images,a,b);
-        requestAnimationFrame(GameLoop);
+const keys = {
+    w : {
+        pressed : false
+    },
+    a : {
+        pressed : false
+    },
+    s : {
+        pressed : false
+    },
+    d : {
+        pressed : false
+    }
+}
+
+window.addEventListener('keydown', (e) => {
+    switch(e.key) {
+        case 'w':
+            keys.w.pressed = true;
+            break;
+        case 'a':
+            keys.a.pressed = true;
+            break;
+        case 's':
+            keys.s.pressed = true;
+            break;
+        case 'd':
+            keys.d.pressed = true;
+            break;
     }
 
-    GameLoop();
-}
+})
 
-StartGame();
+window.addEventListener('keyup', (e) => {
+    switch(e.key) {
+        case 'w':
+            keys.w.pressed = false;
+            break;
+        case 'a':
+            keys.a.pressed = false;
+            break;
+        case 's':
+            keys.s.pressed = false;
+            break;
+        case 'd':
+            keys.d.pressed = false;
+            break;
+    }
+
+})
+
+document.addEventListener('keydown', () => {
+    const speak = document.createElement('div');
+    speak.innerHTML = '<audio src="voice.mp3" autoplay></audio>';
+    document.body.appendChild(speak);
+}, {once:true});
+
+
+document.addEventListener('keydown', () => {
+    const ins = document.querySelector('.instruct');
+    ins.remove();
+}, {once: true});
