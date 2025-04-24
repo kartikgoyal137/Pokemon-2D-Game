@@ -6,7 +6,7 @@ canvas.width = window.innerWidth;
 const background = new Image();
 const player = new Image();
 player.src = 'indie_assets/sprite.png';
-background.src = 'mapC.png';
+background.src = 'indie_assets/mapC.png';
 
 
 class Boundary {
@@ -83,11 +83,23 @@ class PlayerSprite {
     }
 }
 
+;
 function checkGym(city)
 {
     if(city.x< 286 && city.x >-322 && city.y>-1384 && city.y<-1230)
     {
-        window.location.href = 'battle.html';
+        pressEnter.style.display = 'inline-block';
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'Enter')
+            {
+                window.location.href = 'battle.html';
+                
+                
+            }
+        })
+    }
+    else {
+        pressEnter.style.display = 'none';
     }
 }
 
@@ -282,7 +294,7 @@ window.addEventListener('keyup', (e) => {
 
 document.addEventListener('keydown', () => {
     const speak = document.createElement('div');
-    speak.innerHTML = '<audio src="voice.mp3" autoplay></audio>';
+    speak.innerHTML = '<audio src="indie_assets/voice.mp3" autoplay></audio>';
     document.body.appendChild(speak);
 }, {once:true});
 

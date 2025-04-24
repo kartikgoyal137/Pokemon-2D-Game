@@ -18,3 +18,16 @@ body {
     background-color: aliceblue;
     text-align: center;
 }
+
+.enter {
+    position: absolute;
+    background-color: aliceblue;
+    font-family: 'Pokemon Fire Red';
+    font-size: 40px;
+    height: 4vw;
+    padding: 0.5%;
+    width: 40vw;
+    left: 30%;
+    top: 8%;
+    text-align: center;
+}

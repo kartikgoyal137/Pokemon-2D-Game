@@ -15,7 +15,12 @@
     </div>
     <canvas class='canvas'></canvas>
     <audio src="indie_assets/town.mp3" loop autoplay></audio>
+    <div class="enter">Press "Enter" to visit Battle Arena</div>
 </body>
 <script src="collision.js"></script>
 <script src="map.js"></script>
+<script>
+    const pressEnter = document.querySelector('.enter');
+    pressEnter.style.display = 'none';
+</script>
 </html>
