@@ -1,9 +1,9 @@
 import { activeParty, activeEnemy, PokeMoves, findDamage, animation , updateHP} from './battle.js';
 
-
+const pokeUrl = 'https://pokeapi.co/api/v2/';
 
 async function LoadPokemon () { 
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=2000');
+    const response = await fetch(`${pokeUrl}pokemon?limit=2000`);
     const data = await response.json();
 
     for(let i = 0; i<1302; i++)

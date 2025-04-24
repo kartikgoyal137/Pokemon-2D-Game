@@ -1,8 +1,8 @@
 
-
+const pokeUrl = 'https://pokeapi.co/api/v2/';
 
 export async function PokeMoves(name) {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`);
+    const response = await fetch(`${pokeUrl}pokemon/${name.toLowerCase()}`);
     const data = await response.json();
     return data.moves;
 }
@@ -21,7 +21,7 @@ export class Pokemon {
 
     async fetchData () {
         const fname = this.name.toLowerCase();
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${fname}`);
+        const response = await fetch(`${pokeUrl}pokemon/${fname}`);
         const data = await response.json();
 
         const attacks = data.moves;
@@ -69,9 +69,9 @@ export async function findDamage(myName, moveName, enemyName) {
     const pname = myName.toLowerCase();
     const mname = moveName.toLowerCase();
     const ename = enemyName.toLowerCase();
-    const response1 = await fetch(`https://pokeapi.co/api/v2/pokemon/${pname}`);
-    const response2 = await fetch(`https://pokeapi.co/api/v2/move/${mname}`);
-    const response3 = await fetch(`https://pokeapi.co/api/v2/pokemon/${ename}`);
+    const response1 = await fetch(`${pokeUrl}pokemon/${pname}`);
+    const response2 = await fetch(`${pokeUrl}move/${mname}`);
+    const response3 = await fetch(`${pokeUrl}pokemon/${ename}`);
     const pokeData = await response1.json();
     const moveData = await response2.json();
     const enemData = await response3.json();

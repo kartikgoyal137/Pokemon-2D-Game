@@ -290,7 +290,7 @@ window.addEventListener('keyup', (e) => {
 
 document.addEventListener('keydown', () => {
     const speak = document.createElement('div');
-    speak.innerHTML = '<audio src="indie_assets/voice.mp3" autoplay></audio>';
+    speak.innerHTML = '<audio src="audio/voice.mp3" autoplay></audio>';
     document.body.appendChild(speak);
 }, {once:true});
 
