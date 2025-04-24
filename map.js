@@ -122,7 +122,7 @@ function animate()
             if(rectCollision(
                 {
                     ...ash,
-                    y: ash.y - 2 
+                    y: ash.y - 4 
                   },
                   boundary
                 )
@@ -134,7 +134,7 @@ function animate()
         }
         if(moving){
         
-        movables.forEach(obj => obj.y += 2);
+        movables.forEach(obj => obj.y += 4);
         }
     }
     if(keys.s.pressed){
@@ -147,7 +147,7 @@ function animate()
                 if( rectCollision(
                     {
                         ...ash,
-                        y: ash.y + 2 
+                        y: ash.y + 4 
                       },
                       boundary
                     )
@@ -159,7 +159,7 @@ function animate()
             }
         if(moving){
        
-        movables.forEach(obj => obj.y -= 2);
+        movables.forEach(obj => obj.y -= 4);
         }
     }
     if(keys.d.pressed){
@@ -172,7 +172,7 @@ function animate()
                 if(rectCollision(
                     {
                         ...ash,
-                        x: ash.x + 2 
+                        x: ash.x + 4 
                       },
                       boundary
                     )
@@ -184,7 +184,7 @@ function animate()
             }
         if (moving){
     
-        movables.forEach(obj => obj.x -= 2);
+        movables.forEach(obj => obj.x -= 4);
         }
     }
     if(keys.a.pressed){
@@ -197,7 +197,7 @@ function animate()
                 if( rectCollision(
                     {
                         ...ash,
-                        x: ash.x - 2
+                        x: ash.x - 4
                       },
                       boundary
                     )
@@ -209,7 +209,7 @@ function animate()
             }
         if(moving){
    
-        movables.forEach(obj => obj.x += 2);
+        movables.forEach(obj => obj.x += 4);
         }
     }
     
