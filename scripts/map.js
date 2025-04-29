@@ -299,3 +299,8 @@ document.addEventListener('keydown', () => {
     const ins = document.querySelector('.instruct');
     ins.remove();
 }, {once: true});
+
+
+if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+    document.body.innerHTML = "<h1>Unavailable on mobile devices</h1>";
+  }

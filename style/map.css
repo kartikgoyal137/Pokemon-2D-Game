@@ -11,8 +11,8 @@ body {
     position: absolute;
     font-family: 'Pokemon Fire Red';
     font-size: 40px;
-    height: 10vw;
-    width: 40vw;
+    height: auto;
+    width: auto;
     left: 30%;
     top: 8%;
     background-color: whitesmoke;
@@ -24,9 +24,9 @@ body {
     background-color: whitesmoke;
     font-family: 'Pokemon Fire Red';
     font-size: 40px;
-    height: 4vw;
+    height: auto;
     padding: 0.5%;
-    width: 40vw;
+    width: auto;
     left: 30%;
     top: 8%;
     text-align: center;
