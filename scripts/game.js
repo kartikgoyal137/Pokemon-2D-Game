@@ -14,10 +14,10 @@ async function LoadPokemon () {
 }
 LoadPokemon();
 
-function matchOver(num) {
+function matchOver(obj,num) {
     const myPoke = document.querySelector('.myPoke');
     const urPoke = document.querySelector('.urPoke');
-    const choicePoke = num == 1 ? myPoke : urPoke;
+    const choicePoke = (num == 1 ? myPoke : urPoke);
     choicePoke.classList.add('faint')
            setTimeout(() => {
             window.location.href='../index.html';
